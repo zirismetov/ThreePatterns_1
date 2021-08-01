@@ -151,7 +151,6 @@ class Goblin():
         self.action = action.lower()
         self.extra = False
 
-
     def act(self):
         SharedResources.get_instance().add_observers(self.alert)
 
@@ -168,43 +167,46 @@ class Goblin():
             SharedResources.get_instance().notify()
 
     def alert(self):
-        print("we all know what you are doing! Obj: " + str(self))
+        print(
+            f"we all know what you are doing! Obj: {str(self)}, gold left: {SharedResources.get_instance().print_gold()}")
         SharedResources.get_instance().act_factory()
-        #  SharedResources.get_instance().print_gold()
-        # if not self.extra:
-        #     self.extra = True
-        #     SharedResources.get_instance().act_factory()
-
 
 
 class gActView(Goblin):
     def __init__(self):
         pass
+
     def act(self):
-        SharedResources.get_instance().print_gold()
+        print(f"View method  {SharedResources.get_instance().print_gold()}, new object - {self}")
+
 
 class gActAdd(Goblin):
     def __init__(self):
         pass
+
     def act(self):
         SharedResources.get_instance().gold += 1
-        print(str(SharedResources.get_instance().print_gold()) + ' Method: add')
+        print(f"Method: add + {SharedResources.get_instance().print_gold()}, new object - {self}")
+
 
 class gActRemove(Goblin):
     def __init__(self):
         pass
+
     def act(self):
         SharedResources.get_instance().gold -= 2
-        print(str(SharedResources.get_instance().print_gold()) + ' Method: remove')
+        print(f"Method: remove - {SharedResources.get_instance().print_gold()}, new object - {self}")
 
 
+gact1 = gActAdd()
+gact2 = gActRemove()
 g2 = Goblin("add")
 g3 = Goblin("adD")
 g1 = Goblin("remove")
-g4 = Goblin('RemOve')
+
 g2.act()
 g3.act()
 g1.act()
-g4.act()
 
+print(gact1 == gact2)
 print("success")
