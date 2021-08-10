@@ -177,7 +177,7 @@ class gActView(Goblin):
         pass
 
     def act(self):
-        print(f"View method  {SharedResources.get_instance().print_gold()}, new object - {self}")
+        print(f"NEW View method  {SharedResources.get_instance().print_gold()}")
 
 
 class gActAdd(Goblin):
@@ -186,7 +186,7 @@ class gActAdd(Goblin):
 
     def act(self):
         SharedResources.get_instance().gold += 1
-        print(f"Method: add + {SharedResources.get_instance().print_gold()}, new object - {self}")
+        print(f"NEW Method: add + {SharedResources.get_instance().print_gold()}")
 
 
 class gActRemove(Goblin):
@@ -195,11 +195,10 @@ class gActRemove(Goblin):
 
     def act(self):
         SharedResources.get_instance().gold -= 2
-        print(f"Method: remove - {SharedResources.get_instance().print_gold()}, new object - {self}")
+        print(f"NEW Method: remove - {SharedResources.get_instance().print_gold()}")
 
 
-gact1 = gActAdd()
-gact2 = gActRemove()
+
 g2 = Goblin("add")
 g3 = Goblin("adD")
 g1 = Goblin("remove")
@@ -208,5 +207,3 @@ g2.act()
 g3.act()
 g1.act()
 
-print(gact1 == gact2)
-print("success")
